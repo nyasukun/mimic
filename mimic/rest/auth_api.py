@@ -192,6 +192,35 @@ class AuthApi(object):
         validator=attr.validators.instance_of(BehaviorRegistryCollection))
     app = MimicApp()
 
+    @app.route('/v2.0', methods=['GET'])
+    def get_version_details(self, request):
+        """
+        Returns response with details for the Identity API v2.0.
+        """
+        print request
+        return json.dumps(dict(version={
+            "status": "stable",
+            "updated": "2014-04-17T00:00:00Z",
+            "media-types": [
+                {
+                    "base": "application/json",
+                    "type": "application/vnd.openstack.identity-v2.0+json"
+                }
+            ],
+            "id": "v2.0",
+            "links": [
+                {
+                    "href": "http://localhost:5000/v2.0/",
+                    "rel": "self"
+                },
+                {
+                    "href": "http://docs.openstack.org/",
+                    "rel": "describedby",
+                    "type": "text/html"
+                }
+            ]
+        }))
+
     @app.route('/v2.0/tokens', methods=['POST'])
     def get_token_and_service_catalog(self, request):
         """
