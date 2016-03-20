@@ -197,7 +197,6 @@ class AuthApi(object):
         """
         Returns response with details for the Identity API v2.0.
         """
-        print request
         return json.dumps(dict(version={
             "status": "stable",
             "updated": "2014-04-17T00:00:00Z",
@@ -210,7 +209,7 @@ class AuthApi(object):
             "id": "v2.0",
             "links": [
                 {
-                    "href": "http://localhost:5000/v2.0/",
+                    "href": str(URLPath.fromRequest(request)),
                     "rel": "self"
                 },
                 {
